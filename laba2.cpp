@@ -14,6 +14,7 @@ struct pokemon
 void vivodMenu(int*);
 void vvodEmptyBase(struct pokemon[50], int*);
 void vivodBase(struct pokemon[50], int*);
+void addNewLine(struct pokemon[50], int*);
 int main() {
 	int ErrorCode = 0;
 	int lines, num = 0;
@@ -27,12 +28,14 @@ int main() {
 			break;
 		}
 		case 2: {
-			if (lines == 0) printf("pusto");
+			if (lines == 0) printf("pikapusto :(\n");
 			else vivodBase(pokeinfo, &lines);
 			break;
 		}
 		case 3: {
-			printf("yep\n");
+			if (lines == 0) printf("create databse, before adding new line. it's not pika pika,bro");
+			else addNewLine(pokeinfo, &lines);
+			printf("new PikaLine created!\n");
 			break;
 		}
 		case 4: {
@@ -57,27 +60,30 @@ void vivodMenu(int* number) {
 		printf("5. exit\n");
 		scanf("%d", number);
 }
-void vvodEmptyBase(struct pokemon pokeinfo[50], int* lines) {
+void vvodEmptyBase(struct pokemon pokeinfo[50], int* lines, int) {
 	int i = 0;
 	printf("vvedite kol-vo strok: \n");
 	scanf("%d", lines);
-	while (i < *lines) {
-		printf("pokeline: %d", i + 1);
-		pokeinfo[i].numberl = i + 1;
-		printf("name: \n");
-		scanf("%s", pokeinfo[i].name);
-		printf("gen: \n");
-		scanf("%s", pokeinfo[i].gen);
-		printf("type1: \n");
-		scanf("%s", pokeinfo[i].type1);
-		printf("type2: \n");
-		scanf("%s", pokeinfo[i].type2);
-		printf("heal points: \n");
-		scanf("%d", &pokeinfo[i].hp);
-		printf("damage: \n");
-		scanf("%d", &pokeinfo[i].atk);
-		i++;
+	if (lines > 0) {
+		while (i < *lines) {
+			printf("pokeline: %d \n", i + 1);
+			pokeinfo[i].numberl = i + 1;
+			printf("name: \n");
+			scanf("%s", pokeinfo[i].name);
+			printf("gen: \n");
+			scanf("%s", pokeinfo[i].gen);
+			printf("type1: \n");
+			scanf("%s", pokeinfo[i].type1);
+			printf("type2: \n");
+			scanf("%s", pokeinfo[i].type2);
+			printf("heal points: \n");
+			scanf("%d", &pokeinfo[i].hp);
+			printf("damage: \n");
+			scanf("%d", &pokeinfo[i].atk);
+			i++;
+		}
 	}
+	else ErrorCode = -1;
 }
 void vivodBase(struct pokemon pokeinfo[50], int *lines){
 	int i = 0;
@@ -85,4 +91,21 @@ void vivodBase(struct pokemon pokeinfo[50], int *lines){
 		printf("%d %s %s %s %s %d %d\n", pokeinfo[i].numberl, pokeinfo[i].name, pokeinfo[i].gen, pokeinfo[i].type1, pokeinfo[i].type2, pokeinfo[i].hp, pokeinfo[i].atk);
 		i++;
 	}
+}
+void addNewLine(struct pokemon pokeinfo[50], int *lines) {
+	int i = *lines;
+	printf("input your pikaline! \n");
+	pokeinfo[i].numberl = i + 1;
+	printf("name: \n");
+	scanf("%s", pokeinfo[i].name);
+	printf("gen: \n");
+	scanf("%s", pokeinfo[i].gen);
+	printf("type1: \n");
+	scanf("%s", pokeinfo[i].type1);
+	printf("type2: \n");
+	scanf("%s", pokeinfo[i].type2);
+	printf("heal points: \n");
+	scanf("%d", &pokeinfo[i].hp);
+	printf("damage: \n");
+	scanf("%d", &pokeinfo[i].atk);
 }
