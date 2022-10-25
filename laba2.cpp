@@ -26,11 +26,17 @@ int main() {
 		case 1: {
 			vvodEmptyBase(pokeinfo, &lines, &ErrorCode);
 			printf("pika pika:3\n");
+			system("pause");	
+			system("cls");
 			break;
 		}
 		case 2: {
 			if (ErrorCode != 0) printf("pikapusto :(\n");
-			else vivodBase(pokeinfo, &lines);
+			else {
+				vivodBase(pokeinfo, &lines);
+				system("pause");
+				system("cls");
+			}
 			break;
 		}
 		case 3: {
@@ -38,18 +44,26 @@ int main() {
 			else {
 				addNewLine(pokeinfo, &lines);
 				printf("new PikaLine created!\n");
+				system("pause");
+				system("cls");
 			}
 			break;
 		}
 		case 4: {
 			search(pokeinfo, &lines);
+			system("pause");
+			system("cls");
 			break;
 		}
 		case 5: {
 			exit(1);
 			break;
 		}
-		default: break;
+		default: 
+			printf("Something went wrong!"); 
+			system("pause");
+			system("cls");
+			break;
 		}
 	}
 }
@@ -85,6 +99,7 @@ void vvodEmptyBase(struct pokemon pokeinfo[50], int* lines, int* ErrorCode) {
 		i++;
 	}
 	*ErrorCode = 0;
+	system("cls");
 }
 void vivodBase(struct pokemon pokeinfo[50], int* lines) {
 	int i = 0;
@@ -94,7 +109,7 @@ void vivodBase(struct pokemon pokeinfo[50], int* lines) {
 	}
 }
 void addNewLine(struct pokemon pokeinfo[50], int* lines) {
-	int i = *lines + 1;
+	int i = *lines;
 	printf("input your pikaline! \n");
 	pokeinfo[i].numberl = i + 1;
 	printf("name: \n");
@@ -109,6 +124,8 @@ void addNewLine(struct pokemon pokeinfo[50], int* lines) {
 	scanf("%d", &pokeinfo[i].hp);
 	printf("damage: \n");
 	scanf("%d", &pokeinfo[i].atk);
+	*lines = *lines + 1;
+	system("cls");
 }
 /*void search(struct pokemon pokeinfo[50], int* lines) {
 	printf("find your Pokemooon!\n");
@@ -122,19 +139,18 @@ void addNewLine(struct pokemon pokeinfo[50], int* lines) {
 }*/
 void search(pokemon pokeinfo[50], int* lines) {
 	char s[20];
-	printf("What breed do you want to search?\n");
+	printf("Chto eto za pokemooon?\n");
 	scanf("%s", s);
 	int i = 0;
-	int j;
 	while (i < *lines) {
-		j = 0;
+		int j = 0;
 		while (pokeinfo[i].name[j] != '\0') {
 			if (pokeinfo[i].name[j] == s[j]) {
 				j++;
 			}
-			j++;
+			else break;
 		}
-		if(s[j] == '\0'){
+		if (j == strlen(s)) {
 			printf("%d %s %s %s %s %d %d\n", pokeinfo[i].numberl, pokeinfo[i].name, pokeinfo[i].gen, pokeinfo[i].type1, pokeinfo[i].type2, pokeinfo[i].hp, pokeinfo[i].atk);
 		}
 		i++;
