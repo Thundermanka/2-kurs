@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <windows.h>
+#include <string.h>
 struct pokemon
 {
 	int numberl;
@@ -124,7 +125,7 @@ void addNewLine(struct pokemon pokeinfo[50], int* lines) {
 	scanf("%d", &pokeinfo[i].hp);
 	printf("damage: \n");
 	scanf("%d", &pokeinfo[i].atk);
-	*lines = *lines + 1;
+	(* lines)++;
 	system("cls");
 }
 /*void search(struct pokemon pokeinfo[50], int* lines) {
