@@ -25,10 +25,13 @@ int main() {
 		vivodMenu(&num);
 		switch (num) {
 		case 1: {
-			vvodEmptyBase(pokeinfo, &lines, &ErrorCode);
-			printf("pika pika:3\n");
-			system("pause");	
-			system("cls");
+			if (ErrorCode != 0) {
+				vvodEmptyBase(pokeinfo, &lines, &ErrorCode);
+				printf("pika pika:3\n");
+				system("pause");
+				system("cls");
+			}
+			else printf("sorry, but your database is full!");
 			break;
 		}
 		case 2: {
@@ -151,9 +154,10 @@ void search(pokemon pokeinfo[50], int* lines) {
 			}
 			else break;
 		}
-		if (j == strlen(s)) {
+		if (j == strlen(pokeinfo[i].name)) {
 			printf("%d %s %s %s %s %d %d\n", pokeinfo[i].numberl, pokeinfo[i].name, pokeinfo[i].gen, pokeinfo[i].type1, pokeinfo[i].type2, pokeinfo[i].hp, pokeinfo[i].atk);
 		}
+		else printf("sorry, but this pokemon doesn't exist\n");
 		i++;
 	}
 }
